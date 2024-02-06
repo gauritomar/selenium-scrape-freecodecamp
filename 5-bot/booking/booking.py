@@ -40,8 +40,60 @@ class Booking(webdriver.Chrome):
             'button[data-testid="selection-item"]'
         )
 
-        print("Currency Buttons: ", currency_buttons)
-
         for currency_button in currency_buttons:
-            print(currency_button.text)
-            # i want to choose 
+            if "USD" in currency_button.text:
+                currency_button.click()
+                print("Selected USD as Currency")
+                break
+
+        else:
+            print("Button containing text 'USD' not found")
+
+    def select_place_to_go(self, place_to_go):
+        search_field = self.find_element(By.ID, ':re:')
+        search_field.clear()
+
+        search_field.send_keys(place_to_go)
+
+        first_element = self.find_element(By.CSS_SELECTOR, 
+            '#autocomplete-result-0'
+        )
+        first_element.click()
+
+        print("Clicked on the first autocomplete of dropdown")
+
+    def select_dates(self, check_in_date, check_out_date):
+        check_in_element = self.find_element(By.CSS_SELECTOR, 
+            f'[data-date="{check_in_date}"]'
+        )
+        check_in_element.click()
+
+        print("Selected check in date")
+
+        check_out_element = self.find_element(By.CSS_SELECTOR,
+            f'[data-date="{check_out_date}"]'
+        )
+        check_out_element.click()
+        print("Selected check out date")
+
+    def select_adults(self, count):
+        occupancy_button = self.find_element(By.CSS_SELECTOR, '[data-testid="occupancy-config"]')
+        occupancy_button.click()
+        print("Select Occupancy Button")
+
+        decrease_adult = self.find_element(By.CSS_SELECTOR, '[class*="bb803d8689"][class*="e91c91fa93"]')
+        decrease_adult.click()
+
+        print("Decreased adults")
+        spans = self.find_elements(By.CSS_SELECTOR, 'span.d723d73d5f')
+        span_values = [span.text for span in spans]
+        print("Values of spans: ", span_values)
+
+    def click_search(self):
+        search_button = self.find_element(By.CSS_SELECTOR,
+            'button[type="submit"]'
+        )
+
+        search_button.click()
+    
+    
