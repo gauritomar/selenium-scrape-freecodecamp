@@ -1,0 +1,1 @@
+Just following along [Selenium Course - Web Scraping Bots, Browser Automation, Testing by freeCodeCamp](https://www.youtube.com/watch?v=j7VZsCCnptM&t=365s&ab_channel=freeCodeCamp.org)
