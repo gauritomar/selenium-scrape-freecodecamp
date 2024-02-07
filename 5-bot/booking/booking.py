@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 import booking.constant as const
+from booking.booking_filtration import BookingFiltration
 
 class Booking(webdriver.Chrome):
     def __init__(self, teardown=False):
@@ -95,5 +96,8 @@ class Booking(webdriver.Chrome):
         )
 
         search_button.click()
+
+    def apply_filtrations(self):
+        filtration = BookingFiltration(driver=self.driver)
     
-    
+        filtration.apply_star_rating()
